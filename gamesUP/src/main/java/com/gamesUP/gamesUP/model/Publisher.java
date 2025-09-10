@@ -1,7 +1,16 @@
 package com.gamesUP.gamesUP.model;
 
-public class Publisher {
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-	
-	String name;
+@Entity
+@Table(name = "publishers")
+@Getter @Setter
+public class Publisher {
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column(nullable = false)
+	private String name;
 }

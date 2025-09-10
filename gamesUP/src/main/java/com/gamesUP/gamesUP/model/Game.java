@@ -1,12 +1,29 @@
 package com.gamesUP.gamesUP.model;
 
-public class Game {
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-    public int id;
-    public String nom;
-    public String auteur;
-    public String genre;
-    public Category category;
-    public Publisher publisher;
-    public int numEdition;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "games")
+@Getter @Setter
+public class Game {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String title;
+
+    @Column(length = 2000)
+    private String description;
+
+    private Integer minPlayers, maxPlayers, minAge, durationMinutes;
+
+    @Column(precision = 10, scale = 2)
+    private BigDecimal price;
+
+    @ManyToOne(optional = false)
+    private Publisher publisher;
 }
